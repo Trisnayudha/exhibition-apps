@@ -29,5 +29,5 @@ $router->post('forgot/verifyOtp', 'ForgotController@verifyOtp');
 $router->post('forgot/resetPassword', 'ForgotController@resetPassword');
 
 //Scanner
-$router->post('scanner', 'ScannerController@scan');
-$router->post('scanner/add', 'ScannerController@store');
+$router->post('scan', 'ScannerController@scan');
+$router->post('scan/add', 'ScannerController@store');

@@ -15,6 +15,8 @@ class CreateCompanyScan extends Migration
     {
         Schema::create('company_scan', function (Blueprint $table) {
             $table->id();
+            $table->integer('users_id')->nullable();
+            $table->integer('company_id')->nullable();
             $table->timestamps();
         });
     }
