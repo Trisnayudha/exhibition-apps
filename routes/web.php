@@ -31,3 +31,7 @@ $router->post('forgot/resetPassword', 'ForgotController@resetPassword');
 //Scanner
 $router->post('scan', 'ScannerController@scan');
 $router->post('scan/add', 'ScannerController@store');
+
+//Home
+$router->post('home/countVisitor', 'HomeController@countVisitor');
+$router->post('home/banner', 'HomeController@homeBanner');

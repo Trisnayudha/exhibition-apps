@@ -23,21 +23,19 @@ class ScannerController extends Controller
 
     public function scan(Request $request)
     {
-        $this->validate($request, [
-            'code_payment' => 'required',
-        ]);
-        //Get ID Company
-        $user = $this->jwt->user()->id;
+        $this->validate($request, ['code_payment' => 'required']);
+
         $code_payment = $request->input('code_payment');
         $find = Payment::where('code_payment', $code_payment)
             ->join('users', 'users.id', 'payment.users_id')
             ->select('users.id', 'users.name', 'users.company_name', 'users.job_title', 'users.image_users')
             ->first();
-        $response['status'] = 200;
-        $response['message'] = 'successfully scan';
-        $response['payload'] = $find ? $find : [];
-        return response()->json($response);
+
+        return $find
+            ? response()->json(['status' => 200, 'message' => 'successfully scan', 'payload' => $find])
+            : response()->json(['status' => 404, 'message' => 'Data not found', 'payload' => []], 404);
     }
+
 
     public function store(Request $request)
     {

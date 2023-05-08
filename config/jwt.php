@@ -2,7 +2,7 @@
 
 return [
     'secret' => env('JWT_SECRET', 'CpSK6aDesaHe425YzlNRsaPwGvT4EEhRTt4sWRbQ51XPxoQVlsueur27pyKesBMw'),
-    'ttl' => 60,
+    'ttl' => 7200,
     'refresh_ttl' => 20160,
     'algo' => 'HS256',
     'required_claims' => [
