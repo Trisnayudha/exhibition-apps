@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CompanyQuestioner;
 use App\Models\CompanyScanner;
 use Illuminate\Http\Request;
 use Tymon\JWTAuth\JWTAuth;
@@ -57,5 +58,23 @@ class HomeController extends Controller
             'payload' => $data
         ];
         return response()->json($response);
+    }
+
+    public function checkingQuestioner()
+    {
+        $company_id = $this->jwt->user()->id;
+        $check = CompanyQuestioner::where('company_id', $company_id)->first();
+
+        if ($check) {
+            $status = 200;
+            $message = 'Questioner Done';
+            $payload =  true;
+        } else {
+            $status = 200;
+            $message = 'Questioner Input';
+            $payload = false;
+        }
+
+        return response()->json(compact('status', 'message', 'payload'));
     }
 }

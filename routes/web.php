@@ -35,3 +35,4 @@ $router->post('scan/add', 'ScannerController@store');
 //Home
 $router->post('home/countVisitor', 'HomeController@countVisitor');
 $router->post('home/banner', 'HomeController@homeBanner');
+$router->post('home/questioner', 'HomeController@checkingQuestioner');
