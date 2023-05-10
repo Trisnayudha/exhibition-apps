@@ -41,3 +41,4 @@ $router->post('home/chart', 'HomeController@getChart');
 
 //Visitor Detail
 $router->post('home/visitor', 'VisitorController@index');
+$router->post('home/visitor/export', 'VisitorController@requestExport');
