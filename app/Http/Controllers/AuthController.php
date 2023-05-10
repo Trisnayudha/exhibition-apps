@@ -63,7 +63,8 @@ class AuthController extends Controller
                 'message' => 'OTP confirmed, login successful',
                 'payload' => [
                     'user_id' => $user->id,
-                    'token' => $token
+                    'token' => $token,
+                    'pin' => $user->pin != null ? true : false,
                 ]
             ]);
         } else {
@@ -121,6 +122,7 @@ class AuthController extends Controller
         $response['payload'] = [
             'user_id' => $user->id,
             'token' => $token,
+            'pin' => $user->pin != null ? true : false,
         ];
         return response()->json($response);
     }
