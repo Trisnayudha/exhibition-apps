@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\CompanyQuestioner;
 use App\Models\CompanyScanner;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Tymon\JWTAuth\JWTAuth;
 
 class HomeController extends Controller
@@ -76,5 +77,28 @@ class HomeController extends Controller
         }
 
         return response()->json(compact('status', 'message', 'payload'));
+    }
+
+    public function getChart(Request $request)
+    {
+        $day = $request->input('day');
+        $company_id = $this->jwt->user()->id;
+
+        $data = CompanyScanner::select(DB::raw("DATE_FORMAT(CONVERT_TZ(created_at, '+00:00', '+07:00'), '%H %p') as time, COUNT(*) as total"))
+            ->whereDate('created_at', $day)
+            ->where('company_id', $company_id)
+            ->groupBy(DB::raw("DATE_FORMAT(CONVERT_TZ(created_at, '+00:00', '+07:00'), '%H %p')"))
+            ->get();
+
+        $response = [
+            'status' => 200,
+            'message' => 'Successfully show data',
+            'payload' =>
+            $data->map(function ($item) {
+                return ['x' => $item->time, 'y' => $item->total];
+            })
+        ];
+
+        return response()->json($response);
     }
 }
