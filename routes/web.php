@@ -42,3 +42,13 @@ $router->post('home/chart', 'HomeController@getChart');
 //Visitor Detail
 $router->post('home/visitor', 'VisitorController@index');
 $router->post('home/visitor/export', 'VisitorController@requestExport');
+
+//Profile
+$router->post('profile', 'ProfileController@index');
+$router->post('profile/faq', 'ProfileController@faq');
+$router->post('profile/logout', 'ProfileController@logout');
+$router->post('profile/editPin', 'ProfileController@editPin');
+
+//Pin
+$router->post('setUpPin', 'PinController@setUpPin');
+$router->post('checkPin', 'PinController@checkPin');
