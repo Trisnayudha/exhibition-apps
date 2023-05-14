@@ -52,3 +52,9 @@ $router->post('profile/editPin', 'ProfileController@editPin');
 //Pin
 $router->post('setUpPin', 'PinController@setUpPin');
 $router->post('checkPin', 'PinController@checkPin');
+// $router = $app->router;
+$routes = $router->getRoutes();
+
+foreach ($routes as $route) {
+    echo $route['method'] . ': ' . $route['uri'] . PHP_EOL . PHP_EOL;
+}

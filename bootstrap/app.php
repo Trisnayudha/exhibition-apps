@@ -117,6 +117,7 @@ $app->routeMiddleware([
 |
 */
 
+// Enable route file
 $app->router->group([
     'namespace' => 'App\Http\Controllers',
 ], function ($router) {
