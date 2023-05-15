@@ -33,7 +33,7 @@ class ScannerController extends Controller
 
         return $find
             ? response()->json(['status' => 200, 'message' => 'successfully scan', 'payload' => $find])
-            : response()->json(['status' => 404, 'message' => 'Data not found', 'payload' => []], 404);
+            : response()->json(['status' => 404, 'message' => 'Data not found', 'payload' => null], 404);
     }
 
 
@@ -52,7 +52,7 @@ class ScannerController extends Controller
 
         $response['status'] = 200;
         $response['message'] = 'successfully scan';
-        $response['payload'] = [];
+        $response['payload'] = null;
         return response()->json($response);
     }
 }

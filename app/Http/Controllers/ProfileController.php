@@ -37,7 +37,7 @@ class ProfileController extends Controller
         $response = [
             'status' => 200,
             'message' => 'successfully show data',
-            'payload' => $data ? $data : [],
+            'payload' => $data ? $data : null,
         ];
 
         return response()->json($response);
@@ -83,7 +83,7 @@ class ProfileController extends Controller
         return response()->json([
             'status' => 200,
             'message' => 'Logout successful',
-            'payload' => []
+            'payload' => null
         ]);
     }
 
