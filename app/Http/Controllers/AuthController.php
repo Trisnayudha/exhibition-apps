@@ -39,6 +39,7 @@ class AuthController extends Controller
             $response['status'] = 401;
             $response['message'] = 'Invalid credentials';
             $response['payload'] = $data;
+            return response()->json($response, 401);
         } else {
 
             $email = $request->input('email');
@@ -53,8 +54,8 @@ class AuthController extends Controller
             $response['status'] = 200;
             $response['message'] = 'OTP has been sent to your email';
             $response['payload'] = [];
+            return response()->json($response);
         }
-        return response()->json($response);
     }
 
     public function verifyOtp(Request $request)
@@ -113,6 +114,7 @@ class AuthController extends Controller
             $response['status'] = 401;
             $response['message'] = 'Invalid credentials';
             $response['payload'] = $data;
+            return response()->json($response, 401);
         } else {
             $credentials = $request->only('email', 'password');
             try {
@@ -156,7 +158,7 @@ class AuthController extends Controller
                 'token' => $token,
                 'pin' => $user->pin != null ? true : false,
             ];
+            return response()->json($response);
         }
-        return response()->json($response);
     }
 }
