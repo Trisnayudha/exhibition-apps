@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Company;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Tymon\JWTAuth\JWTAuth;
 
@@ -31,6 +32,7 @@ class PinController extends Controller
             return response()->json([
                 'status' => 400,
                 'message' => 'Invalid PIN format. PIN must be a 6-digit number',
+                'payload' => null
             ]);
         }
 
@@ -61,14 +63,29 @@ class PinController extends Controller
             return response()->json([
                 'status' => 200,
                 'message' => 'Correct PIN',
-                'payload' => []
+                'payload' => null
             ]);
         } else {
             return response()->json([
                 'status' => 400,
                 'message' => 'Wrong PIN',
-                'payload' => []
+                'payload' => null
             ]);
         }
+    }
+
+
+    public function deletePin()
+    {
+        $company_id = $this->jwt->user()->id;
+        $query = DB::table('company')
+            ->where('id', '=', $company_id)
+            ->update(['pin' => null]);
+
+        return response()->json([
+            'status' => 200,
+            'message' => 'Delete PIN',
+            'payload' => null
+        ]);
     }
 }

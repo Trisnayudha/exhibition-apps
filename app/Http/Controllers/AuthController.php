@@ -53,7 +53,7 @@ class AuthController extends Controller
 
             $response['status'] = 200;
             $response['message'] = 'OTP has been sent to your email';
-            $response['payload'] = [];
+            $response['payload'] = null;
             return response()->json($response);
         }
     }
@@ -89,7 +89,7 @@ class AuthController extends Controller
             return response()->json([
                 'status' => 400,
                 'message' => 'Invalid OTP, please try again',
-                'payload' => []
+                'payload' => null
             ], 400);
         }
     }
@@ -133,26 +133,26 @@ class AuthController extends Controller
                 return response()->json([
                     'status' => 500,
                     'message' => 'Token expired',
-                    'payload' => []
+                    'payload' => null
                 ], 500);
             } catch (\Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
                 return response()->json([
                     'status' => 500,
                     'message' => 'Token invalid',
-                    'payload' => []
+                    'payload' => null
                 ], 500);
             } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
                 return response()->json([
                     'status' => 500,
                     'message' => $e->getMessage(),
-                    'payload' => []
+                    'payload' => null
                 ], 500);
             }
             // Get the authenticated user
             $user = $this->jwt->user();
 
             $response['status'] = 200;
-            $response['message'] = 'Successfully Login';
+            $response['message'] = $user->pin != null ? 'Successfully Login' : 'Setup your pin';
             $response['payload'] = [
                 'user_id' => $user->id,
                 'token' => $token,

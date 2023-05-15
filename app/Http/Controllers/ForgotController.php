@@ -39,7 +39,7 @@ class ForgotController extends Controller
         return response()->json([
             'status' => 200,
             'message' => 'A password reset email has been sent to your email address',
-            'payload' => []
+            'payload' => null
         ]);
     }
 
@@ -59,13 +59,13 @@ class ForgotController extends Controller
             return response()->json([
                 'status' => 200,
                 'message' => 'OTP verified successfully',
-                'payload' => []
+                'payload' => null
             ]);
         } else {
             return response()->json([
                 'status' => 400,
                 'message' => 'Invalid OTP, please request a new password reset',
-                'payload' => []
+                'payload' => null
             ]);
         }
     }
@@ -88,7 +88,7 @@ class ForgotController extends Controller
             return response()->json([
                 'status' => 400,
                 'message' => 'Invalid OTP, please verify it first',
-                'payload' => []
+                'payload' => null
             ]);
         }
 
@@ -102,7 +102,7 @@ class ForgotController extends Controller
         return response()->json([
             'status' => 200,
             'message' => 'Password reset successful',
-            'payload' => []
+            'payload' => null
         ]);
     }
 }
