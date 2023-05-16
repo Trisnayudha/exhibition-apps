@@ -70,7 +70,7 @@ class PinController extends Controller
                 'status' => 400,
                 'message' => 'Wrong PIN',
                 'payload' => null
-            ]);
+            ], 400);
         }
     }
 
