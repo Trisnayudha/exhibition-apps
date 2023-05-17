@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
+
 class TestController extends Controller
 {
     /**
@@ -14,14 +16,13 @@ class TestController extends Controller
         //
     }
 
-    public function index()
+    public function index(Request $request)
     {
-
         return response()->json([
             'status' => 200,
             'message' => 'show date events',
             'payload' => [
-                'date' => '2023-05-17'
+                'date' => $request->date
             ]
         ]);
     }
