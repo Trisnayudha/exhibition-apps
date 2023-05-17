@@ -53,6 +53,8 @@ $router->post('profile/editPin', 'ProfileController@editPin');
 $router->post('setUpPin', 'PinController@setUpPin');
 $router->post('checkPin', 'PinController@checkPin');
 $router->post('deletePin', 'PinController@deletePin');
+
+$router->post('checkDate', 'TestController@index');
 // // $router = $app->router;
 // $routes = $router->getRoutes();
 
