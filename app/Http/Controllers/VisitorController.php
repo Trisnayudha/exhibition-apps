@@ -33,7 +33,7 @@ class VisitorController extends Controller
         $perPage = $request->input('per_page', 10); // Default per page is 10, can be changed
 
         $data = CompanyScanner::join('users', 'users.id', 'company_scan.users_id')
-            ->select('users.id', 'users.name', 'users.email', 'users.job_title', 'users.company_name')
+            ->select('users.id', 'users.name', 'users.email', 'users.job_title', 'users.company_name', 'users.image_users')
             ->where(function ($query) use ($search) {
                 $query->where('users.name', 'LIKE', '%' . $search . '%')
                     ->orWhere('users.company_name', 'LIKE', '%' . $search . '%');
