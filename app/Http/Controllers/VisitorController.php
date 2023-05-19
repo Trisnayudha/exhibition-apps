@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\CompanyScanner;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 // use Illuminate\Support\Facades\Mail;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
@@ -140,5 +141,28 @@ class VisitorController extends Controller
         } else {
             return response()->json(['status' => 200, 'message' => 'Successfully create and send Excel file', 'payload' => $send]);
         }
+    }
+
+    public function getPie()
+    {
+        $company_id = $this->jwt->user()->id;
+
+        $data = DB::table('company_scan')
+            ->join('users', 'company_scan.users_id', '=', 'users.id')
+            ->select(DB::raw("users.company_name as company, COUNT(*) as total"))
+            ->where('company_scan.company_id', $company_id)
+            ->groupBy('users.company_name')
+            ->get();
+
+        $response = [
+            'status' => 200,
+            'message' => 'Successfully show data',
+            'payload' =>
+            $data->map(function ($item) {
+                return ['x' => $item->total, 'y' => $item->company];
+            })
+        ];
+
+        return response()->json($response);
     }
 }

@@ -42,6 +42,7 @@ $router->post('home/chart', 'HomeController@getChart');
 //Visitor Detail
 $router->post('home/visitor', 'VisitorController@index');
 $router->post('home/visitor/export', 'VisitorController@requestExport');
+$router->post('home/visitor/company', 'VisitorController@getPie');
 
 //Profile
 $router->post('profile', 'ProfileController@index');
