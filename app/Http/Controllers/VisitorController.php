@@ -143,26 +143,35 @@ class VisitorController extends Controller
         }
     }
 
-    public function getPie()
+    public function getPie(Request $request)
     {
-        $company_id = $this->jwt->user()->id;
+        try {
+            $company_id = $this->jwt->user()->id;
+            $category = $request->category ?? 'company_name';
+            $data = DB::table('company_scan')
+                ->join('users', 'company_scan.users_id', '=', 'users.id')
+                ->select(DB::raw("users.$category as company, COUNT(*) as total"))
+                ->where('company_scan.company_id', $company_id)
+                ->groupBy('users.' . $category)
+                ->get();
 
-        $data = DB::table('company_scan')
-            ->join('users', 'company_scan.users_id', '=', 'users.id')
-            ->select(DB::raw("users.company_name as company, COUNT(*) as total"))
-            ->where('company_scan.company_id', $company_id)
-            ->groupBy('users.company_name')
-            ->get();
+            $response = [
+                'status' => 200,
+                'message' => 'Successfully show data',
+                'payload' => $data->map(function ($item) {
+                    return ['x' => $item->total, 'y' => $item->company];
+                })
+            ];
 
-        $response = [
-            'status' => 200,
-            'message' => 'Successfully show data',
-            'payload' =>
-            $data->map(function ($item) {
-                return ['x' => $item->total, 'y' => $item->company];
-            })
-        ];
+            return response()->json($response);
+        } catch (\Exception $e) {
+            $errorResponse = [
+                'status' => 500,
+                'message' => 'Error retrieving data',
+                'error' => $e->getMessage()
+            ];
 
-        return response()->json($response);
+            return response()->json($errorResponse, 500);
+        }
     }
 }
