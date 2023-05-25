@@ -55,6 +55,11 @@ $router->post('setUpPin', 'PinController@setUpPin');
 $router->post('checkPin', 'PinController@checkPin');
 $router->post('deletePin', 'PinController@deletePin');
 
+//Questioner
+$router->post('questioner', 'QuestionerController@index');
+$router->post('questioner/store', 'QuestionerController@store');
+
+
 $router->post('checkDate', 'TestController@index');
 // // $router = $app->router;
 // $routes = $router->getRoutes();
