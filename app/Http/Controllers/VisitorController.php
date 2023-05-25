@@ -147,7 +147,7 @@ class VisitorController extends Controller
     {
         try {
             $company_id = $this->jwt->user()->id;
-            $category = $request->category ?? 'company_name';
+            $category = $request->category ? $request->category :  'company_name';
             $data = DB::table('company_scan')
                 ->join('users', 'company_scan.users_id', '=', 'users.id')
                 ->select(DB::raw("users.$category as company, COUNT(*) as total"))
