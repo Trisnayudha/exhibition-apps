@@ -55,8 +55,7 @@ class QuestionerController extends Controller
             ],
             [
                 'id' => 6,
-                'question' => 'Please rate your overall Indonesia Miner Conference & Exhibition 2023
-                experience',
+                'question' => 'Please rate your overall Indonesia Miner Conference & Exhibition 2023 experience',
                 'optional' => 'PG',
                 'listPG' => ['Very Satisfied', 'Satisfied', 'Dissatisfied']
             ],
