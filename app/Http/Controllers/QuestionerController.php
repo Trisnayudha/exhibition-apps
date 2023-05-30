@@ -55,15 +55,14 @@ class QuestionerController extends Controller
             ],
             [
                 'id' => 6,
-                'question' => 'Please rate your overall Indonesia Miner Conference &amp; Exhibition 2023
+                'question' => 'Please rate your overall Indonesia Miner Conference & Exhibition 2023
                 experience',
                 'optional' => 'PG',
                 'listPG' => ['Very Satisfied', 'Satisfied', 'Dissatisfied']
             ],
             [
                 'id' => 7,
-                'question' => 'Please share about your experience at this year’s show or suggestions on how we
-                can make the event better for you in the future:',
+                'question' => 'Please share about your experience at this year’s show or suggestions on how we can make the event better for you in the future:',
                 'optional' => 'Essay',
                 'listPG' => []
             ],
@@ -75,8 +74,7 @@ class QuestionerController extends Controller
             ],
             [
                 'id' => 9,
-                'question' => 'When would be the best time for you to receive the event prospectus/ kit prior to the
-                event date?',
+                'question' => 'When would be the best time for you to receive the event prospectus/ kit prior to the event date?',
                 'optional' => 'PG',
                 'listPG' => ['3 months', '6 months', '1 year']
             ],
