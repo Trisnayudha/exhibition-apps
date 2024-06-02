@@ -49,9 +49,9 @@ class HomeController extends Controller
     public function homeBanner()
     {
         $data = [
-            ['image' => 'https://indonesiaminer.com/new-home/logo/1.png'],
-            ['image' => 'https://indonesiaminer.com/new-home/logo/2.png'],
-            ['image' => 'https://indonesiaminer.com/new-home/logo/3.png'],
+            ['image' => 'https://indonesiaminer.com/new-home/logo/1_v2.png'],
+            ['image' => 'https://indonesiaminer.com/new-home/logo/2_v2.png'],
+            ['image' => 'https://indonesiaminer.com/new-home/logo/3_v2.png'],
         ];
         $response = [
             'status' => 200,
