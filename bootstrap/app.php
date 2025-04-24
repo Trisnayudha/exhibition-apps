@@ -22,7 +22,7 @@ date_default_timezone_set(env('APP_TIMEZONE', 'Asia/Jakarta'));
 $app = new Laravel\Lumen\Application(
     dirname(__DIR__)
 );
-
+$app->configure('database');
 $app->withFacades();
 
 $app->withEloquent();
